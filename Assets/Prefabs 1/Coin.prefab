@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 2238536487163198691}
   - component: {fileID: 8629458193140707684}
   - component: {fileID: 8261583999186610793}
-  - component: {fileID: 3771242819717000568}
+  - component: {fileID: 7804536378543863986}
+  - component: {fileID: 1342489444482249104}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Coin
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 5279769269878855133}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 20.06, y: 0, z: 0}
+  m_LocalPosition: {x: 20.06, y: 0.76, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -126,36 +127,35 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.4, y: 0.4, z: 0.4}
   m_Center: {x: -0.01065743, y: 0.4, z: -0.021061897}
---- !u!54 &3771242819717000568
-Rigidbody:
+--- !u!114 &7804536378543863986
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5279769269878855133}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 122
-  m_CollisionDetection: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b64b5d6deb04c2f980881508f026d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinText: {fileID: 0}
+--- !u!114 &1342489444482249104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5279769269878855133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d51a6c51404b548e78846dbf52783d5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
