@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody playerRb;
     private Animator playerAnim;
     private AudioSource playerAudio;
+     private GameManager gameManager;
 
     public float jumpForce = 10;
     public float gravityModifier;
@@ -71,6 +72,7 @@ public class PlayerController : MonoBehaviour
             playerAnim.SetInteger("DeathType_int", 1);
             explosionParticle.Play();
             dirtParticle.Stop();
+            gameManager.GameOver();
         }
     }
 }
