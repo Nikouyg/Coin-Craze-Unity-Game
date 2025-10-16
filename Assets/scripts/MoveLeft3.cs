@@ -2,16 +2,15 @@ using UnityEngine;
 
 public class MoveLeft3 : MonoBehaviour
 {
-    private float speed = 30;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public float speed = 10f;          // How fast the coin moves left
+    private float rotationSpeed = 300f; // How fast the coin spins
 
-    // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.left * Time.deltaTime * speed);
+        // 1️⃣ Move left in WORLD space (always straight)
+        transform.Translate(Vector3.left * speed * Time.deltaTime, Space.World);
+
+        // 2️⃣ Spin around the Y-axis in LOCAL space
+        transform.Rotate(0f, rotationSpeed * Time.deltaTime, 0f, Space.Self);
     }
 }
