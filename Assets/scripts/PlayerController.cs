@@ -5,12 +5,14 @@ public class PlayerController : MonoBehaviour
     private Rigidbody playerRb;
     private Animator playerAnim;
     private AudioSource playerAudio;
-     private GameManager gameManager;
+    private GameManager gameManager;
+    private CapsuleCollider playerCollider; // NEW
 
     public float jumpForce = 10;
     public float gravityModifier;
     public bool isOnGround = true;
     public bool gameOver = false;
+    private bool isCrouching = false; // NEW
 
     public ParticleSystem explosionParticle;
     public ParticleSystem dirtParticle;
@@ -24,6 +26,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
+        playerCollider = GetComponent<CapsuleCollider>(); // NEW
         Physics.gravity *= gravityModifier;
         playerAnim = GetComponent<Animator>();
         playerAudio = GetComponent<AudioSource>();
@@ -32,7 +35,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // Jump with Space
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !gameOver)
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !gameOver && !isCrouching)
         {
             playerAudio.PlayOneShot(jumpSound, 1.0f);
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -44,16 +47,42 @@ public class PlayerController : MonoBehaviour
         // Throw sphere with L
         if (Input.GetKeyDown(KeyCode.L) && !gameOver)
         {
-            // Spawn projectile slightly in front of player
             GameObject projectile = Instantiate(projectilePrefab, transform.position + transform.forward + Vector3.up * 1f, Quaternion.identity);
-
-            // Apply forward force
             Rigidbody projRb = projectile.GetComponent<Rigidbody>();
             projRb.AddForce(transform.forward * throwForce);
-
-            // Auto destroy after 3 seconds to avoid clutter
             Destroy(projectile, 3f);
         }
+
+        // CROUCH with M
+        if (Input.GetKeyDown(KeyCode.M) && isOnGround && !gameOver)
+        {
+            StartCrouch();
+        }
+
+        if (Input.GetKeyUp(KeyCode.M))
+        {
+            StopCrouch();
+        }
+    }
+
+    private void StartCrouch()
+    {
+        isCrouching = true;
+        playerAnim.SetBool("isCrouching", true);
+
+        // Shrink collider height to half
+        playerCollider.height = 1f;
+        playerCollider.center = new Vector3(0, 0.5f, 0);
+    }
+
+    private void StopCrouch()
+    {
+        isCrouching = false;
+        playerAnim.SetBool("isCrouching", false);
+
+        // Restore collider height
+        playerCollider.height = 2f;
+        playerCollider.center = new Vector3(0, 1f, 0);
     }
 
     private void OnCollisionEnter(Collision collision)
