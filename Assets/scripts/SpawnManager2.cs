@@ -4,8 +4,9 @@ public class SpawnManager2 : MonoBehaviour
 {
      public GameObject obstaclePrefab;
     private Vector3 spawnPos = new Vector3(20, 5, 0);
-     private float startDelay=4;
-    private float repeatRate=3;
+     private float startDelay=5;
+    private float repeatRate = 4;
+     private PlayerController PlayerControllerScripts;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,9 +22,11 @@ public class SpawnManager2 : MonoBehaviour
     void SpawnObstacle()
     {
         
+         
             Instantiate(obstaclePrefab,spawnPos,obstaclePrefab.transform.rotation);
 
 
+        }
 
     }
-}
+

@@ -67,6 +67,7 @@ public class PlayerController : MonoBehaviour
 
     private void StartCrouch()
     {
+        
         isCrouching = true;
         playerAnim.SetBool("isCrouching", true);
 
