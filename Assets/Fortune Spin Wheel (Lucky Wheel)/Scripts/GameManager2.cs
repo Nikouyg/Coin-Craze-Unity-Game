@@ -7,13 +7,17 @@ public class GameManager2 : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        gameOverText.gameObject.SetActive(true);
+      
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+    public void GameOver()
+    {
+          gameOverText.gameObject.SetActive(true);
     }
     
 }
