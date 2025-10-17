@@ -1927,7 +1927,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7403b6729e15b48e8aae32cd268819dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclePrefab: {fileID: 9164158878321810932}
+  coinPrefab: {fileID: 9164158878321810932}
 --- !u!4 &2018434040
 Transform:
   m_ObjectHideFlags: 0
@@ -2140,7 +2140,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: Coin
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6487455569273503494, guid: 422a78b0dce3a4f0d906ff0ac34213be, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6487455569273503494, guid: 422a78b0dce3a4f0d906ff0ac34213be, type: 3}
+      propertyPath: rotationSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7052437024721709873, guid: 422a78b0dce3a4f0d906ff0ac34213be, type: 3}
+      propertyPath: m_Constraints
+      value: 122
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240047245389246375, guid: 422a78b0dce3a4f0d906ff0ac34213be, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6487455569273503494, guid: 422a78b0dce3a4f0d906ff0ac34213be, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -2165,6 +2182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c0d5ef0e74341dca411e4b1cd72445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 30
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

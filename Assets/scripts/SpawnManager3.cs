@@ -2,34 +2,37 @@ using UnityEngine;
 
 public class SpawnManager3 : MonoBehaviour
 {
-     public GameObject obstaclePrefab;
-    private Vector3 spawnPos = new Vector3(20, 0, 0);
-     private float startDelay=3;
-    private float repeatRate = 3;
-     private PlayerController PlayerControllerScripts;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public GameObject coinPrefab;
+    private Vector3 spawnPos = new Vector3(10, 0, 0);
+    private float startDelay = 3f;
+    private float repeatRate = 3f;
+    private PlayerController PlayerControllerScripts;
+
     void Start()
     {
-        InvokeRepeating("SpawnObstacle", startDelay, repeatRate);
-         
+        // ✅ Find player and get its PlayerController component
+        PlayerControllerScripts = GameObject.Find("Player").GetComponent<PlayerController>();
+
+        // ✅ Start spawning obstacles
+        InvokeRepeating("SpawnCoin", startDelay, repeatRate);
     }
 
-    // Update is called once per frame
     void Update()
     {
-
+        // ✅ Stop spawning when game is over
+        if (PlayerControllerScripts != null && PlayerControllerScripts.gameOver)
+        {
+            CancelInvoke("SpawnCoin");
+        }
     }
-    void SpawnObstacle()
+
+    void SpawnCoin()
     {
-        
-         
-            if(PlayerControllerScripts.gameOver==false){
-            Instantiate(obstaclePrefab,spawnPos,obstaclePrefab.transform.rotation);
-
-
+        // ✅ Only spawn if the game is not over
+        if (PlayerControllerScripts != null && !PlayerControllerScripts.gameOver)
+        {
+            Instantiate(coinPrefab, spawnPos, coinPrefab.transform.rotation);
         }
-
-        }
-
     }
+}
 
