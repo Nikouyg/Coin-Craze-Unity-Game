@@ -3,7 +3,7 @@ using UnityEngine;
 public class SpawnManager3 : MonoBehaviour
 {
     public GameObject coinPrefab;
-    private Vector3 spawnPos = new Vector3(15, 2, 0);
+    private Vector3 spawnPos = new Vector3(10, 2, 0);
     private float startDelay = 5f;
     private float repeatRate = 5f;
     private PlayerController PlayerControllerScripts;
@@ -30,7 +30,8 @@ public class SpawnManager3 : MonoBehaviour
     {
         if (PlayerControllerScripts != null && !PlayerControllerScripts.gameOver)
         {
-            Vector3 spawnPos = new Vector3(10, Random.Range(1, 3), 0); // random height between 2–5
+            // Fixed spawn position at height 0.5
+            Vector3 spawnPos = new Vector3(10, 0.5f, 0);
             Instantiate(coinPrefab, spawnPos, coinPrefab.transform.rotation);
         }
     }
