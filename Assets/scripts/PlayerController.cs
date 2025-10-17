@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Game")]
     public bool gameOver = false;
-    public GameManager gameManager;
+    public GameManager2 gameManager;
 
     [Header("Effects & Sounds")]
     public ParticleSystem explosionParticle;
@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour
         playerAudio = GetComponent<AudioSource>();
 
         Physics.gravity *= gravityModifier;
+        gameManager = GameObject.Find("GameManager2").GetComponent<GameManager2>();
+
 
         if (gameOverText != null)
             gameOverText.gameObject.SetActive(false); // hide Game Over text
