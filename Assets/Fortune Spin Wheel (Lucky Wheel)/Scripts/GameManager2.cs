@@ -12,7 +12,7 @@ public class GameManager2 : MonoBehaviour
     public TextMeshProUGUI gameTitleText;
 
     [Header("Settings")]
-    public float titleDisplayTime = 2f; // Time in seconds to show the title
+    public float titleDisplayTime = 2f; // Time to show title before hiding
 
     void Start()
     {
@@ -59,5 +59,15 @@ public class GameManager2 : MonoBehaviour
 
         // Reload current scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    // ✅ This is your difficulty selector method
+    public void StartGame(int difficulty)
+    {
+        Debug.Log("Starting game with difficulty: " + difficulty);
+
+        // You can make difficulty affect spawn rate, speed, etc.
+        // Example:
+        // spawnManager.spawnRate /= difficulty;
     }
 }

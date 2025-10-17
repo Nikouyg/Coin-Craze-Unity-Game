@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
 
         gameOverText.gameObject.SetActive(true);
     }
-    
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground") && !gameOver)
@@ -60,6 +60,14 @@ public class GameManager : MonoBehaviour
             dirtParticle.Stop();
             gameManager.GameOver();
         }
+    }
+     public void StartGame(int difficulty)
+    {
+        Debug.Log("Starting game with difficulty: " + difficulty);
+
+        // You can make difficulty affect spawn rate, speed, etc.
+        // Example:
+        // spawnManager.spawnRate /= difficulty;
     }
 
 }

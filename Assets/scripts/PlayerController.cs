@@ -24,7 +24,8 @@ public class PlayerController : MonoBehaviour
     public AudioClip jumpSound;
     public AudioClip crashSound;
     public AudioClip coinSound;
-   
+
+    [Header("Projectile")]
     public GameObject projectilePrefab;
     public float throwForce = 500f;
 
@@ -42,14 +43,13 @@ public class PlayerController : MonoBehaviour
         Physics.gravity *= gravityModifier;
         gameManager = GameObject.Find("GameManager2").GetComponent<GameManager2>();
 
-
         if (gameOverText != null)
-            gameOverText.gameObject.SetActive(false); // hide Game Over text
+            gameOverText.gameObject.SetActive(false);
     }
 
     void Update()
     {
-        if (gameOver) return; // stop input if game over
+        if (gameOver) return;
 
         HandleJump();
         HandleCrouch();
@@ -121,13 +121,16 @@ public class PlayerController : MonoBehaviour
             dirtParticle.Stop();
             playerAudio.PlayOneShot(crashSound, 1f);
 
+            // Optional physical fall
+            playerRb.constraints = RigidbodyConstraints.None;
+
             if (gameOverText != null)
                 gameOverText.gameObject.SetActive(true);
 
             if (gameManager != null)
                 gameManager.GameOver();
 
-            Debug.Log("Game Over!");
+            Debug.Log("💀 Game Over! Player died.");
         }
     }
 
@@ -136,10 +139,10 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Coin"))
         {
             Destroy(other.gameObject);
+
             if (cm != null)
-            {
                 cm.coinCount++;
-            }
+
             if (coinSound != null)
                 playerAudio.PlayOneShot(coinSound, 1f);
         }
