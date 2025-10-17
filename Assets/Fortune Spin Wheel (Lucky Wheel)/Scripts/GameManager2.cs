@@ -10,6 +10,7 @@ public class GameManager2 : MonoBehaviour
     public TextMeshProUGUI gameOverText;
     public Button restartButton;
     public TextMeshProUGUI gameTitleText;
+    public GameObject titleScreen;
 
     [Header("Settings")]
     public float titleDisplayTime = 2f; // Time to show title before hiding
@@ -69,5 +70,6 @@ public class GameManager2 : MonoBehaviour
         // You can make difficulty affect spawn rate, speed, etc.
         // Example:
         // spawnManager.spawnRate /= difficulty;
+        titleScreen.gameObject.SetActive(false);
     }
 }
