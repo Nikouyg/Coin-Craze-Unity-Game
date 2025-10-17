@@ -1,19 +1,19 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 
 public class CoinManager : MonoBehaviour
 {
+    public TextMeshProUGUI scoreText; // TMP text
     public int coinCount;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
-        
+        // optional: initialize
+        scoreText.text = "Coin Count: 0";
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        scoreText.text = "Coin Count: " + coinCount.ToString();
     }
 }
