@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MoveLeft3 : MonoBehaviour
 {
-    public float speed = 10f;          // How fast the coin moves left
+    public float speed = 20f;          // How fast the coin moves left
     private float rotationSpeed = 300f; // How fast the coin spins
 
     void Update()

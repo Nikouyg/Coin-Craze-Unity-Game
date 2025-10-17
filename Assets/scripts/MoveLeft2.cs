@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MoveLeft2 : MonoBehaviour
 {
-    private float speed = 30;
+    private float speed = 20;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

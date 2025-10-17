@@ -3,9 +3,9 @@ using UnityEngine;
 public class SpawnManager3 : MonoBehaviour
 {
     public GameObject coinPrefab;
-    private Vector3 spawnPos = new Vector3(8, 2, 0);
-    private float startDelay = 3f;
-    private float repeatRate = 3f;
+    private Vector3 spawnPos = new Vector3(15, 2, 0);
+    private float startDelay = 5f;
+    private float repeatRate = 5f;
     private PlayerController PlayerControllerScripts;
 
     void Start()
