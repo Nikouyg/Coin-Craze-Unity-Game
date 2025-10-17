@@ -5,6 +5,7 @@ public class CoinManager : MonoBehaviour
 {
     public TextMeshProUGUI scoreText; // TMP text
     public int coinCount;
+    
 
     void Start()
     {
@@ -14,6 +15,7 @@ public class CoinManager : MonoBehaviour
 
     void Update()
     {
+       
         scoreText.text = ": " + coinCount.ToString();
     }
 }

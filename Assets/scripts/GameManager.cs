@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
 
         gameOverText.gameObject.SetActive(true);
     }
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground") && !gameOver)
