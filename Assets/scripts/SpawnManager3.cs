@@ -30,7 +30,7 @@ public class SpawnManager3 : MonoBehaviour
     {
         if (PlayerControllerScripts != null && !PlayerControllerScripts.gameOver)
         {
-            Vector3 spawnPos = new Vector3(10, Random.Range(2, 5), 0); // random height between 2–5
+            Vector3 spawnPos = new Vector3(10, Random.Range(1, 3), 0); // random height between 2–5
             Instantiate(coinPrefab, spawnPos, coinPrefab.transform.rotation);
         }
     }
