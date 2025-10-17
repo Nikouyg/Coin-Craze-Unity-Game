@@ -24,8 +24,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip jumpSound;
     public AudioClip crashSound;
     public AudioClip coinSound;
-
-    [Header("Projectile")]
+   
     public GameObject projectilePrefab;
     public float throwForce = 500f;
 

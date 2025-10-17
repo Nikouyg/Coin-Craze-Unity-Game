@@ -872,7 +872,7 @@ MonoBehaviour:
   dirtParticle: {fileID: 1972196646}
   jumpSound: {fileID: 8300000, guid: 08ab7053d586c458db3774d33c141a4b, type: 3}
   crashSound: {fileID: 8300000, guid: 4bcde6de2166e41e284ec46d8a01fb90, type: 3}
-  coinSound: {fileID: 0}
+  coinSound: {fileID: 8300000, guid: 113ee460fadc340e4957a7404a9fbb27, type: 3}
   projectilePrefab: {fileID: 3633276006777759000, guid: c3673f2373b57405bb54c794b8f441df, type: 3}
   throwForce: 500
   gameOverText: {fileID: 1171819454}
@@ -940,9 +940,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 113ee460fadc340e4957a7404a9fbb27, type: 3}
+  m_Resource: {fileID: 8300000, guid: 113ee460fadc340e4957a7404a9fbb27, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1471,9 +1471,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverText: {fileID: 1171819454}
-  restartButton: {fileID: 2055907965}
-  gameTitleText: {fileID: 2127381335}
-  titleDisplayTime: 2
+  restartButton: {fileID: 0}
+  gameTitleText: {fileID: 0}
+  titleDisplayTime: 1
 --- !u!4 &1078230295
 Transform:
   m_ObjectHideFlags: 0
@@ -2021,6 +2021,7 @@ GameObject:
   - component: {fileID: 2055907967}
   - component: {fileID: 2055907966}
   - component: {fileID: 2055907965}
+  - component: {fileID: 2055907969}
   m_Layer: 5
   m_Name: Restart
   m_TagString: Untagged
@@ -2142,6 +2143,28 @@ RectTransform:
   m_AnchoredPosition: {x: 18, y: -180}
   m_SizeDelta: {x: 107.8, y: 34.5}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &2055907969
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055907964}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f7de0177261b344e684448557f7ad637, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2127381334
 GameObject:
   m_ObjectHideFlags: 0
