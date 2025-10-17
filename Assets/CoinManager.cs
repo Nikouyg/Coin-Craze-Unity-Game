@@ -14,6 +14,6 @@ public class CoinManager : MonoBehaviour
 
     void Update()
     {
-        scoreText.text = "Coin Count: " + coinCount.ToString();
+        scoreText.text = ": " + coinCount.ToString();
     }
 }
