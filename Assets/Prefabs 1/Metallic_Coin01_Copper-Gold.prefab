@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7052437024721709873}
   - component: {fileID: 8240047245389246375}
   - component: {fileID: 8811484080400929358}
-  - component: {fileID: 6487455569273503494}
+  - component: {fileID: 6466734503835745682}
   m_Layer: 0
   m_Name: Metallic_Coin01_Copper-Gold
   m_TagString: Coin
@@ -115,7 +115,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 122
   m_CollisionDetection: 0
 --- !u!64 &8240047245389246375
 MeshCollider:
@@ -136,7 +136,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -4891524235082050076, guid: c289a94b305e8bd4eb44e5d735963b63, type: 3}
 --- !u!65 &8811484080400929358
@@ -154,13 +154,13 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.2425, y: 0.2425, z: 0.02379296}
-  m_Center: {x: -0.000000037252903, y: 0.121262684, z: 0.0000014384277}
---- !u!114 &6487455569273503494
+  m_Size: {x: 0.29949945, y: 0.26696917, z: 0.023792962}
+  m_Center: {x: 0.009190185, y: 0.11820414, z: 0.0000014379622}
+--- !u!114 &6466734503835745682
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5003799977482109418}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da81e0434d1a645e783a007d0a671afd, type: 3}
+  m_Script: {fileID: 11500000, guid: f8c0d5ef0e74341dca411e4b1cd72445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 10
+  speed: 30

@@ -1,4 +1,7 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -22,6 +25,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject projectilePrefab;
     public float throwForce = 500f;
+    public CoinManager cm;
 
     void Start()
     {
@@ -105,4 +109,14 @@ public class PlayerController : MonoBehaviour
             gameManager.GameOver();
         }
     }
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Coin"))
+        {
+  Destroy(other.gameObject);
+            cm.coinCount++;
+          
+        }
+    }
+
 }

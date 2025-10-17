@@ -3,7 +3,7 @@ using UnityEngine;
 public class SpawnManager3 : MonoBehaviour
 {
     public GameObject coinPrefab;
-    private Vector3 spawnPos = new Vector3(10, 0, 0);
+    private Vector3 spawnPos = new Vector3(8, 2, 0);
     private float startDelay = 3f;
     private float repeatRate = 3f;
     private PlayerController PlayerControllerScripts;
@@ -28,11 +28,12 @@ public class SpawnManager3 : MonoBehaviour
 
     void SpawnCoin()
     {
-        // ✅ Only spawn if the game is not over
         if (PlayerControllerScripts != null && !PlayerControllerScripts.gameOver)
         {
+            Vector3 spawnPos = new Vector3(10, Random.Range(2, 5), 0); // random height between 2–5
             Instantiate(coinPrefab, spawnPos, coinPrefab.transform.rotation);
         }
     }
 }
+
 
