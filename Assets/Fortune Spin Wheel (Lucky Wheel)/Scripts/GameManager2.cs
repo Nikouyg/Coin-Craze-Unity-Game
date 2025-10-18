@@ -2,47 +2,60 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
 public class GameManager2 : MonoBehaviour
 {
     [Header("UI Elements")]
+    public GameObject titleScreen;             // Panel containing title + difficulty buttons
     public TextMeshProUGUI gameOverText;
     public Button restartButton;
-    public TextMeshProUGUI gameTitleText;
-    public GameObject titleScreen;
 
-    [Header("Settings")]
-    public float titleDisplayTime = 2f; // Time to show title before hiding
+    [Header("Gameplay")]
+    public SpawnManager spawnManager;          // Reference to your SpawnManager
 
     void Start()
     {
-        // Hide Game Over UI and Restart button at the start
+        // Pause the game at the start
+        Time.timeScale = 0f;
+
+        // Show title/difficulty panel
+        if (titleScreen != null)
+            titleScreen.SetActive(true);
+
+        // Hide Game Over and Restart button
         if (gameOverText != null)
             gameOverText.gameObject.SetActive(false);
 
         if (restartButton != null)
+        {
             restartButton.gameObject.SetActive(false);
-
-        // Show title initially and hide it after delay
-        if (gameTitleText != null)
-            StartCoroutine(HideTitle());
-
-        // Add listener to Restart button
-        if (restartButton != null)
             restartButton.onClick.AddListener(RestartGame);
+        }
     }
 
-    IEnumerator HideTitle()
+    // Called by Difficulty Buttons
+    public void StartGame(int difficulty)
     {
-        yield return new WaitForSeconds(titleDisplayTime);
-        if (gameTitleText != null)
-            gameTitleText.gameObject.SetActive(false);
+        // Hide title screen
+        if (titleScreen != null)
+            titleScreen.SetActive(false);
+
+        // Unpause the game
+        Time.timeScale = 1f;
+
+        // Adjust obstacle spawn rate based on difficulty
+        if (spawnManager != null)
+        {
+            if (difficulty == 1) // Easy
+                spawnManager.spawnRate = 4f;   // default
+            else if (difficulty == 2) // Hard
+                spawnManager.spawnRate = 2f;   // faster
+        }
     }
 
     public void GameOver()
     {
-        // Show Game Over text and Restart button
+        // Show Game Over UI and Restart button
         if (gameOverText != null)
             gameOverText.gameObject.SetActive(true);
 
@@ -55,21 +68,9 @@ public class GameManager2 : MonoBehaviour
 
     public void RestartGame()
     {
-        // Resume time
+        // Resume time and reload the scene
         Time.timeScale = 1f;
-
-        // Reload current scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
-    // ✅ This is your difficulty selector method
-    public void StartGame(int difficulty)
-    {
-        Debug.Log("Starting game with difficulty: " + difficulty);
-
-        // You can make difficulty affect spawn rate, speed, etc.
-        // Example:
-        // spawnManager.spawnRate /= difficulty;
-        titleScreen.gameObject.SetActive(false);
-    }
 }
+

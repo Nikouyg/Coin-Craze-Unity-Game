@@ -1,27 +1,34 @@
 using UnityEngine;
 using UnityEngine.UI;
+
 public class DifficultyButton : MonoBehaviour
 {
-    public int difficulty;
+    public int difficulty;                 // 1 = Easy, 2 = Hard
     private Button button;
-    private GameManager gameManager; 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private GameManager2 gameManager;
+
     void Start()
     {
-        button=GetComponent<Button>();
-        gameManager= GameObject.Find("Game Manager").GetComponent<GameManager>();
-        button.onClick.AddListener(SetDifficulty);
+        button = GetComponent<Button>();
+
+        // Find the GameManager2 in the scene
+        gameManager = GameObject.Find("GameManager2").GetComponent<GameManager2>();
+
+        if (button != null)
+            button.onClick.AddListener(SetDifficulty);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     void SetDifficulty()
     {
-        Debug.Log(button.gameObject.name+" was clicked");
-        gameManager.StartGame(difficulty);
+        if (gameManager != null)
+        {
+            Debug.Log(button.gameObject.name + " clicked. Difficulty: " + difficulty);
+            gameManager.StartGame(difficulty);
+        }
+        else
+        {
+            Debug.LogError("GameManager2 not found!");
+        }
     }
 }
 
