@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip jumpSound;
     public AudioClip crashSound;
     public AudioClip coinSound;
+    public AudioClip powerupSound;
 
     [Header("Projectile")]
     public GameObject projectilePrefab;
@@ -32,6 +33,9 @@ public class PlayerController : MonoBehaviour
     [Header("UI")]
     public TextMeshProUGUI gameOverText;
     public CoinManager cm;
+
+    [Header("Power-Up")]
+    public bool hasShield = false; // true if player picked up a power-up
 
     void Start()
     {
@@ -112,25 +116,34 @@ public class PlayerController : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Obstacle") && !gameOver)
         {
-            // Game Over
-            gameOver = true;
+            if (hasShield)
+            {
+                // Use shield to prevent death
+                hasShield = false;
+                Debug.Log("Shield absorbed the hit!");
+                playerAudio.PlayOneShot(powerupSound, 1f);
+            }
+            else
+            {
+                // Game Over
+                gameOver = true;
+                playerAnim.SetBool("Death_b", true);
+                playerAnim.SetInteger("DeathType_int", 1);
+                explosionParticle.Play();
+                dirtParticle.Stop();
+                playerAudio.PlayOneShot(crashSound, 1f);
 
-            playerAnim.SetBool("Death_b", true);
-            playerAnim.SetInteger("DeathType_int", 1);
-            explosionParticle.Play();
-            dirtParticle.Stop();
-            playerAudio.PlayOneShot(crashSound, 1f);
+                // Optional physical fall
+                playerRb.constraints = RigidbodyConstraints.None;
 
-            // Optional physical fall
-            playerRb.constraints = RigidbodyConstraints.None;
+                if (gameOverText != null)
+                    gameOverText.gameObject.SetActive(true);
 
-            if (gameOverText != null)
-                gameOverText.gameObject.SetActive(true);
+                if (gameManager != null)
+                    gameManager.GameOver();
 
-            if (gameManager != null)
-                gameManager.GameOver();
-
-            Debug.Log("💀 Game Over! Player died.");
+                Debug.Log("💀 Game Over! Player died.");
+            }
         }
     }
 
@@ -146,5 +159,15 @@ public class PlayerController : MonoBehaviour
             if (coinSound != null)
                 playerAudio.PlayOneShot(coinSound, 1f);
         }
+        else if (other.gameObject.CompareTag("PowerUp"))
+        {
+            Destroy(other.gameObject);
+
+            // Grant shield/power-up
+            hasShield = true;
+            playerAudio.PlayOneShot(powerupSound, 1f);
+            Debug.Log("Power-up collected! Shield active.");
+        }
     }
 }
+

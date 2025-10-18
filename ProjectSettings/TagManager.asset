@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - Obstacle
   - Coin
+  - Menu
+  - Powerup
   layers:
   - Default
   - TransparentFX
