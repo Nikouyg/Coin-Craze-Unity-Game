@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
 
         // 🔹 Make the power-up indicator follow the player
         if (powerupIndicator != null)
-            powerupIndicator.transform.position = transform.position;
+            powerupIndicator.transform.position = transform.position + new Vector3(0,1.5f,0);
     }
 
     private void HandleJump()
