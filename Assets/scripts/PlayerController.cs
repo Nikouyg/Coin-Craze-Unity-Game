@@ -1,5 +1,5 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip crashSound;
     public AudioClip coinSound;
     public AudioClip powerupSound;
+    public bool hasPowerup;
 
     [Header("Projectile")]
     public GameObject projectilePrefab;
@@ -159,8 +160,9 @@ public class PlayerController : MonoBehaviour
             if (coinSound != null)
                 playerAudio.PlayOneShot(coinSound, 1f);
         }
-        else if (other.gameObject.CompareTag("PowerUp"))
+        else if (other.CompareTag("PowerUp"))
         {
+            hasPowerup = true;
             Destroy(other.gameObject);
 
             // Grant shield/power-up
@@ -169,5 +171,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Power-up collected! Shield active.");
         }
     }
+
 }
+
 
