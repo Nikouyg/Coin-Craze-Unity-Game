@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour
     public GameObject powerupIndicator;
     public AudioClip powerupSound;
     public bool hasPowerup;
-    
 
     [Header("Projectile")]
     public GameObject projectilePrefab;
@@ -50,6 +49,12 @@ public class PlayerController : MonoBehaviour
         Physics.gravity *= gravityModifier;
         gameManager = GameObject.Find("GameManager2").GetComponent<GameManager2>();
 
+        hasShield = false; // start without shield
+
+        // 🔹 Hide the indicator at the start
+        if (powerupIndicator != null)
+            powerupIndicator.gameObject.SetActive(false);
+
         if (gameOverText != null)
             gameOverText.gameObject.SetActive(false);
     }
@@ -61,9 +66,10 @@ public class PlayerController : MonoBehaviour
         HandleJump();
         HandleCrouch();
         HandleProjectile();
-        //powerup fits to the player's position and follows it
-        powerupIndicator.transform.position = transform.position;
 
+        // 🔹 Make the power-up indicator follow the player
+        if (powerupIndicator != null)
+            powerupIndicator.transform.position = transform.position;
     }
 
     private void HandleJump()
@@ -113,47 +119,47 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-   private void OnCollisionEnter(Collision collision)
-{
-    if (collision.gameObject.CompareTag("Ground"))
+    private void OnCollisionEnter(Collision collision)
     {
-        isOnGround = true;
-        dirtParticle.Play();
-    }
-    else if (collision.gameObject.CompareTag("Obstacle") && !gameOver)
-    {
-        if (hasShield)
+        if (collision.gameObject.CompareTag("Ground"))
         {
-            // 🛡️ Use shield to prevent death
-            hasShield = false;
-            powerupIndicator.gameObject.SetActive(false); // 🔹 Turn off the indicator
-            Destroy(collision.gameObject); // Optional: remove the obstacle
-            Debug.Log("Shield absorbed the hit!");
-            playerAudio.PlayOneShot(powerupSound, 1f);
+            isOnGround = true;
+            dirtParticle.Play();
         }
-        else
+        else if (collision.gameObject.CompareTag("Obstacle") && !gameOver)
         {
-            //  Game Over
-            gameOver = true;
-            playerAnim.SetBool("Death_b", true);
-            playerAnim.SetInteger("DeathType_int", 1);
-            explosionParticle.Play();
-            dirtParticle.Stop();
-            playerAudio.PlayOneShot(crashSound, 1f);
+            if (hasShield)
+            {
+                // 🛡️ Use shield to prevent death
+                hasShield = false;
+                if (powerupIndicator != null)
+                    powerupIndicator.gameObject.SetActive(false); // 🔹 Turn off the indicator
+                Destroy(collision.gameObject); // Optional: remove the obstacle
+                Debug.Log("🛡️ Shield absorbed the hit!");
+                playerAudio.PlayOneShot(powerupSound, 1f);
+            }
+            else
+            {
+                // 💀 Game Over
+                gameOver = true;
+                playerAnim.SetBool("Death_b", true);
+                playerAnim.SetInteger("DeathType_int", 1);
+                explosionParticle.Play();
+                dirtParticle.Stop();
+                playerAudio.PlayOneShot(crashSound, 1f);
 
-            // Optional physical fall
-            playerRb.constraints = RigidbodyConstraints.None;
+                playerRb.constraints = RigidbodyConstraints.None;
 
-            if (gameOverText != null)
-                gameOverText.gameObject.SetActive(true);
+                if (gameOverText != null)
+                    gameOverText.gameObject.SetActive(true);
 
-            if (gameManager != null)
-                gameManager.GameOver();
+                if (gameManager != null)
+                    gameManager.GameOver();
 
-            Debug.Log(" Game Over! Player died.");
+                Debug.Log("💀 Game Over! Player died.");
+            }
         }
     }
-}
 
     private void OnTriggerEnter(Collider other)
     {
@@ -169,17 +175,17 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.CompareTag("PowerUp"))
         {
-           
             Destroy(other.gameObject);
 
-            // Grant shield/power-up
+            // 🟢 Grant shield/power-up
             hasShield = true;
-            powerupIndicator.gameObject.SetActive(true);
+            if (powerupIndicator != null)
+                powerupIndicator.gameObject.SetActive(true);
             playerAudio.PlayOneShot(powerupSound, 1f);
-            Debug.Log("Power-up collected! Shield active.");
+            Debug.Log("🟢 Power-up collected! Shield active.");
         }
     }
-
 }
+
 
 
