@@ -13,7 +13,7 @@ public class SpawnManager4 : MonoBehaviour
 
     private float nextSpawnTime;
 
-    void Update()
+    void Update() //keeps checking if it is time to spawn
     {
         // Don't spawn if game is paused
         if (Time.timeScale == 0f) return;
@@ -25,7 +25,7 @@ public class SpawnManager4 : MonoBehaviour
         }
     }
 
-    void SpawnObject()
+    void SpawnObject() // if number is less than 0.15 it spawns powerup otherwise obstacle
     {
         float randomValue = Random.value;
 
@@ -43,7 +43,7 @@ public class SpawnManager4 : MonoBehaviour
         }
     }
 
-    // Optional: make game harder
+    //  make game harder
     public void SetHardMode()
     {
         spawnRate = Mathf.Max(1f, spawnRate * 0.5f);

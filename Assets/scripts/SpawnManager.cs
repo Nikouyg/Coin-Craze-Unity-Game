@@ -26,7 +26,7 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    // Optional: instant hard mode
+    //  instant hard mode
     public void SetHardMode()
     {
         spawnRate = 2f;
