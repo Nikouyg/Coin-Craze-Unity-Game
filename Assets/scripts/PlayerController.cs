@@ -46,6 +46,8 @@ public class PlayerController : MonoBehaviour
         playerAnim = GetComponent<Animator>();
         playerAudio = GetComponent<AudioSource>();
 
+
+        
         Physics.gravity *= gravityModifier;
         gameManager = GameObject.Find("GameManager2").GetComponent<GameManager2>();
 
@@ -130,17 +132,17 @@ public class PlayerController : MonoBehaviour
         {
             if (hasShield)
             {
-                // 🛡️ Use shield to prevent death
+                //  Use shield to prevent death
                 hasShield = false;
                 if (powerupIndicator != null)
                     powerupIndicator.gameObject.SetActive(false); // 🔹 Turn off the indicator
-                Destroy(collision.gameObject); // Optional: remove the obstacle
-                Debug.Log("🛡️ Shield absorbed the hit!");
+                Destroy(collision.gameObject); //  remove the obstacle
+                Debug.Log(" Shield absorbed the hit!");
                 playerAudio.PlayOneShot(powerupSound, 1f);
             }
             else
             {
-                // 💀 Game Over
+                //  Game Over
                 gameOver = true;
                 playerAnim.SetBool("Death_b", true);
                 playerAnim.SetInteger("DeathType_int", 1);
@@ -156,7 +158,7 @@ public class PlayerController : MonoBehaviour
                 if (gameManager != null)
                     gameManager.GameOver();
 
-                Debug.Log("💀 Game Over! Player died.");
+                Debug.Log(" Game Over! Player died.");
             }
         }
     }

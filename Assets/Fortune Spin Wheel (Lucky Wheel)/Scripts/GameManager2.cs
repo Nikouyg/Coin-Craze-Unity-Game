@@ -70,6 +70,7 @@ public class GameManager2 : MonoBehaviour
     {
         // Resume time and reload the scene
         Time.timeScale = 1f;
+        Physics.gravity = new Vector3(0, -9.81f, 0);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
